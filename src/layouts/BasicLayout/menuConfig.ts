@@ -1,4 +1,5 @@
 const headerMenuConfig = [];
+
 const asideMenuConfig = [
   {
     name: 'Dashboard',
@@ -6,4 +7,5 @@ const asideMenuConfig = [
     icon: 'smile',
   },
 ];
+
 export { headerMenuConfig, asideMenuConfig };

@@ -1,7 +1,7 @@
 {
-  "name": "websocket-cluster-web",
+  "name": "websocket-cluster",
   "version": "0.1.0",
-  "description": "轻量级模板，使用 JavaScript，仅包含基础的 Layout。",
+  "description": "轻量级模板，使用 TypeScript，仅包含基础的 Layout。",
   "dependencies": {
     "@alifd/next": "^1.19.4",
     "moment": "^2.24.0",
@@ -36,8 +36,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alibaba-fusion/materials/tree/master/scaffolds/scaffold-lite-js"
+    "url": "https://github.com/alibaba-fusion/materials/tree/master/scaffolds/scaffold-lite"
   },
   "private": true,
-  "originTemplate": "@alifd/scaffold-lite-js"
+  "originTemplate": "@alifd/scaffold-lite"
 }

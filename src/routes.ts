@@ -8,6 +8,7 @@ const routerConfig = [
     children: [
       {
         path: '/',
+        exact: true,
         component: Dashboard,
       },
     ],

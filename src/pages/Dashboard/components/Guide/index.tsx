@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button } from '@alifd/next';
 import styles from './index.module.scss';
+import { request } from 'ice'
 
 const Guide = () => {
   return (
@@ -22,7 +23,11 @@ const Guide = () => {
             使用文档
           </Button>
         </a>
-        <a href="https://github.com/ice-lab/icejs" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/ice-lab/icejs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button type="secondary" size="large">
             GitHub
           </Button>
@@ -31,5 +36,19 @@ const Guide = () => {
     </div>
   );
 };
+
+async function getList() {
+  try {
+    const data = await request({
+      url: 'http://localhost:9528/p1/web'
+    });
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getList();
+
 
 export default Guide;

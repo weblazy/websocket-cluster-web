@@ -1,7 +1,7 @@
 
-## Fusion Design Lite - JS
+## Fusion Design Lite - TS
 
-> 轻量级模板，使用 JavaScript，仅包含基础的 Layout。
+> 轻量级模板，使用 TypeScript，仅包含基础的 Layout。
 
 ## 使用
 
