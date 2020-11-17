@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@alifd/next';
 import styles from './index.module.scss';
-import { request } from 'ice'
+import { request } from 'ice';
 
 const Guide = () => {
   return (
@@ -37,6 +37,8 @@ const Guide = () => {
   );
 };
 
+export default Guide;
+
 async function getList() {
   try {
     const data = await request({
@@ -49,6 +51,41 @@ async function getList() {
 }
 
 getList();
+var listenPayResult = ({ success, fail }: any): WebSocket => {
+  const params = qs.stringify({})
+  const wsUrl = 'ws://127.0.0.1:9528/p1/client?' + params
+  let ws = new WebSocket(wsUrl)
+  setInterval(() => {
+    const pr = {
+      mType: 'keepAlive',
+      mRes: 'success',
+      msg: '连接正常',
+      mData: {},
+    }
+    ws.send(JSON.stringify(pr))
+  }, 18000)
 
+  ws.onclose = function (e) {
+    console.log(e)
+    ws = new WebSocket(wsUrl)
+  }
+  ws.onerror = function (e) {
+    console.log(e)
+  }
 
-export default Guide;
+  ws.onopen = function (e) {
+    console.log(e)
+  }
+  ws.onmessage = function (event) {
+    const json = JSON.parse(event.data)
+    if (json.mRes === 'success' && json.mType === 'payStatus') {
+      if (json.mData.payStatus === 1) {
+        success()
+      } else if (json.mData.payStatus === 2) {
+        fail()
+      }
+    }
+  }
+  return ws
+}
+var ws = listenPayResult({ success: () => { console.log("sucess1") }, fail: () => { console.log("fail1") } });
