@@ -2,8 +2,8 @@ const headerMenuConfig = [];
 
 const asideMenuConfig = [
   {
-    name: '重新登录',
-    path: '/user/login',
+    name: '菜单1',
+    path: '/index',
     icon: 'smile',
   },
 ];

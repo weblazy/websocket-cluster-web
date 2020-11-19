@@ -4,6 +4,7 @@ import styles from './index.module.scss';
 
 
 const Guide = () => {
+  
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Welcome to icejs!</h2>
@@ -36,6 +37,7 @@ const Guide = () => {
     </div>
   );
 };
+
 
 export default Guide;
 

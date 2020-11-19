@@ -75,6 +75,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
       location.href = '/#/index'　
     }).catch(function (e) {
       Message.error(e);
+      location.href = '/#/index'　
     });
   };
 

@@ -3,6 +3,8 @@ import { Shell, ConfigProvider } from '@alifd/next';
 import PageNav from './components/PageNav';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
+import HeaderAvatar from './components/HeaderAvatar';
+
 
 (function () {
   const throttle = function (type: string, name: string, obj: Window = window) {
@@ -61,18 +63,6 @@ export default function BasicLayout({
     });
   }
 
-      layui.use('layim', function (layim) {
-      //先来个客服
-      layim.config({
-        brief: false //是否简约模式（如果true则不显示主面板）
-      }).chat({
-        name: '客服'
-        , type: 'friend'
-        , avatar: 'http://tp1.sinaimg.cn/5619439268/180/40030060651/1'
-        , id: -2
-      });
-    });
-
   return (
     <ConfigProvider device={device}>
       <Shell
@@ -94,7 +84,9 @@ export default function BasicLayout({
             marginRight: 10,
           }}
         />
-        <Shell.Action />
+        <Shell.Action>
+          <HeaderAvatar />
+        </Shell.Action>
         <Shell.Navigation>
           <PageNav />
         </Shell.Navigation>
