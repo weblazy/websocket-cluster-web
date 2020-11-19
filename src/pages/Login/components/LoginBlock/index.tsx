@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Input, Message, Form, Divider, Checkbox, Icon } from '@alifd/next';
-
 import { useInterval } from './utils';
 import styles from './index.module.scss';
 import userService from '@/services/user';
+import { withRouter } from 'react-router-dom'
+
+
 
 const { Item } = Form;
 
@@ -70,6 +72,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     var params = {username:values.name,password:values.password}
     userService.getUser(params).then(function (response) {
       Message.success(response);
+      location.href = '/#/index'　
     }).catch(function (e) {
       Message.error(e);
     });
@@ -196,4 +199,4 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
   );
 };
 
-export default LoginBlock;
+export default withRouter(LoginBlock);

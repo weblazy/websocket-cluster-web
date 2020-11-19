@@ -5,22 +5,22 @@ import Login from '@/pages/Login'
 
 const routerConfig = [
   {
-    path: '/user',
-    component: UserLayout,
+    path: '/index',
+    component: BasicLayout,
     children: [
       {
-        path: '/login',
-        component: Login,
+        path: '/',
+        component: Dashboard,
       }
     ],
   },
   {
     path: '/',
-    component: BasicLayout,
+    component: UserLayout,
     children: [
       {
-        path: '/index',
-        component: Dashboard,
+        path: '/user/login',
+        component: Login,
       },
       {
         path: '/',
@@ -28,6 +28,7 @@ const routerConfig = [
         redirect: '/user/login',
       },
     ],
-  }
+  },
+
 ];
 export default routerConfig;

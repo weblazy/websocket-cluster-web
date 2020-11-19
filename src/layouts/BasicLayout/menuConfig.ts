@@ -2,7 +2,7 @@ const headerMenuConfig = [];
 
 const asideMenuConfig = [
   {
-    name: 'Dashboard',
+    name: '重新登录',
     path: '/user/login',
     icon: 'smile',
   },
