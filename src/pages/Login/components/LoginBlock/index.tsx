@@ -3,6 +3,7 @@ import { Input, Message, Form, Divider, Checkbox, Icon } from '@alifd/next';
 
 import { useInterval } from './utils';
 import styles from './index.module.scss';
+import userService from '@/services/user';
 
 const { Item } = Form;
 
@@ -46,7 +47,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
         setSecond(59);
       }
     },
-    isRunning ? 1000 : null,
+    isRunning ? 1000 : 0,
   );
 
   const formChange = (values: IDataSource) => {
@@ -66,8 +67,12 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
       console.log('errors', errors);
       return;
     }
-    console.log('values:', values);
-    Message.success('登录成功');
+    var params = {username:values.name,password:values.password}
+    userService.getUser(params).then(function (response) {
+      Message.success(response);
+    }).catch(function (e) {
+      Message.error(e);
+    });
   };
 
   const phoneForm = (

@@ -3,7 +3,7 @@ const headerMenuConfig = [];
 const asideMenuConfig = [
   {
     name: 'Dashboard',
-    path: '/',
+    path: '/user/login',
     icon: 'smile',
   },
 ];

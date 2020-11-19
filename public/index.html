@@ -15,21 +15,6 @@
   <script src="/static/axios.min.js"></script>
 
   <script>
-
-    function getList() {
-      axios.post('http://localhost:9528/p1/web', {
-        firstName: 'Fred',
-        lastName: 'Flintstone'
-      })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-    }
-    getList()
     layui.use('layim', function (layim) {
       //先来个客服
       layim.config({
