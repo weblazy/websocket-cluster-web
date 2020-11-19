@@ -4,10 +4,11 @@
   "description": "轻量级模板，使用 TypeScript，仅包含基础的 Layout。",
   "dependencies": {
     "@alifd/next": "^1.19.4",
+    "@alifd/theme-design-pro": "^0.x",
+    "axios": "^0.21.0",
     "moment": "^2.24.0",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "@alifd/theme-design-pro": "^0.x"
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
     "@iceworks/spec": "^1.0.0",
