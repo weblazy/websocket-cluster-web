@@ -1,0 +1,17 @@
+{
+  "mpa": {
+    "openPage": "login",
+    "template": {
+      "index.html": [
+        "Dashboard"
+      ],
+      "login.html": [
+        "login"
+      ]
+    }
+  },
+  "template": "node",
+  "container": {
+    "port": 3333
+  }
+}

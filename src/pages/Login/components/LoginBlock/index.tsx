@@ -72,10 +72,10 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     var params = {username:values.name,password:values.password}
     userService.getUser(params).then(function (response) {
       Message.success(response);
-      location.href = '/#/index'　
+      location.href = '/dashboard.html#/'　
     }).catch(function (e) {
       Message.error(e);
-      location.href = '/#/index'　
+      location.href = '/dashboard.html#/'　
     });
   };
 

@@ -56,7 +56,7 @@ HeaderAvatar.defaultProps = {
 };
 
 const logout = () => {
-  location.href = 'http://localhost:3333/#/user/login'
+  window.location.href = 'http://localhost:3333/login.html#/'
 };
 
 export default HeaderAvatar;

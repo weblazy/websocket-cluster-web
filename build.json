@@ -1,4 +1,5 @@
 {
+   "mpa": true,
   "plugins": [
     [
       "build-plugin-fusion",
