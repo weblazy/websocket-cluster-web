@@ -1,26 +1,31 @@
-import { request } from 'ice';
+export const delay = (time) => new Promise((resolve) => setTimeout(() => resolve(), time));
 
 interface IState {
-  name: string;
+  username: string;
+  email: string;
   department: string;
   avatar: string;
-  userid: number | null;
+  uid: number | null;
+  token: string;
 }
 
 export default {
   state: {
-    name: 'default',
+    username: '小强',
+    email:'',
     department: '',
     avatar: '',
-    userid: null,
+    token: '',
+    uid: null,
   },
 
   effects: (dispatch) => ({
-    async fetchUserProfile() {
-      const res = await request('/api/profile');
-      if (res.status === 'SUCCESS') {
-        dispatch.user.update(res.data);
-      }
+     async getUserInfo () {
+      await delay(1000);
+      dispatch.user.update({
+        name: 'taobao',
+        id: '123',
+      });
     },
   }),
 

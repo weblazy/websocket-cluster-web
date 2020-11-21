@@ -390,6 +390,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       url: options.url
       ,type: options.type || 'get'
       ,data: options.data
+      ,headers: options.headers||{}
       ,dataType: options.dataType || 'json'
       ,cache: false
       ,success: function(res){

@@ -3,9 +3,6 @@ import { Input, Message, Form, Divider, Checkbox, Icon } from '@alifd/next';
 import { useInterval } from './utils';
 import styles from './index.module.scss';
 import userService from '@/services/user';
-import { withRouter } from 'react-router-dom'
-
-
 
 const { Item } = Form;
 
@@ -63,7 +60,6 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     // get values.phone
     checkRunning(true);
   };
-
   const handleSubmit = (values: IDataSource, errors: []) => {
     if (errors) {
       console.log('errors', errors);
@@ -71,11 +67,18 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     }
     var params = {username:values.name,password:values.password}
     userService.getUser(params).then(function (response) {
-      Message.success(response);
+      var storage = window.localStorage;
+      storage.username = response.data.username;
+      storage.email = response.data.email;
+      storage.avatar = response.data.avatar;
+      storage.token = response.data.token;
+      Message.success('请求成功');
+      console.log(response);
       location.href = '/dashboard.html#/'　
     }).catch(function (e) {
-      Message.error(e);
-      location.href = '/dashboard.html#/'　
+      console.log(e);
+      Message.error('请求失败');
+      // location.href = '/dashboard.html#/'　
     });
   };
 
@@ -200,4 +203,6 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
   );
 };
 
-export default withRouter(LoginBlock);
+
+export default LoginBlock;
+

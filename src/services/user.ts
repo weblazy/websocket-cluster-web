@@ -5,7 +5,9 @@ export default {
     async getUser(params) {
         return await request({
             url: 'http://localhost:9528/p1/web/login',
-            params,
+            method:'post',
+            responseType:'json',
+            data:params,
         });
     },
 }

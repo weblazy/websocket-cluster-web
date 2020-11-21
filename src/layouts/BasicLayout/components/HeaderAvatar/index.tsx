@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, Overlay, Menu, Icon } from '@alifd/next';
 import styles from './index.module.scss';
+import store from '@/store';
 
 const { Item } = Menu;
 const { Popup } = Overlay;
@@ -10,6 +11,8 @@ export interface Props {
   avatar: string;
   mail: string;
 }
+
+
 
 const UserProfile = ({ name, avatar, mail }) => {
   return (
@@ -59,5 +62,13 @@ const logout = () => {
   window.location.href = 'http://localhost:3333/login.html#/'
 };
 
-export default HeaderAvatar;
+
+export default () => {
+  var storage = window.localStorage
+  if (storage.token == '') {
+    window.location.href = 'http://localhost:3333/login.html#/'
+  }
+  var prop = { name: storage.username, mail: storage.email, avatar: storage.avatar }
+  return HeaderAvatar(prop);
+}
 

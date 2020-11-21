@@ -14,56 +14,7 @@
   <script src="/static/layui/layui.js"></script>
 
   <script>
-    layui.use('layim', function (layim) {
-      layim.config({
-        init: {
-          url: 'http://localhost:9528/p1/web/getChatInfo' //接口地址（返回的数据格式见下文）
-          , type: 'post' 
-          , data: {token:'token'} 
-        },
-        brief: false,
-        members: {
-           url: 'http://localhost:9528/p1/web/getGroupMembers' //接口地址（返回的数据格式见下文）
-          , type: 'post' 
-          , data: { token: 'token' } 
-         },
-        title: "标题",
-        copyright: true
-      });
-    });
-    const wsUrl = 'ws://127.0.0.1:9528/p1/client';
-    let ws = new WebSocket(wsUrl);
-    setInterval(() => {
-      const pr = {
-        mType: 'keepAlive',
-        mRes: 'success',
-        msg: '连接正常',
-        mData: {},
-      }
-      ws.send(JSON.stringify(pr))
-    }, 18000);
 
-    ws.onclose = function (e) {
-      console.log(e);
-      ws = new WebSocket(wsUrl);
-    }
-    ws.onerror = function (e) {
-      console.log(e);
-    }
-
-    ws.onopen = function (e) {
-      console.log(e);
-    }
-    ws.onmessage = function (event) {
-      const json = JSON.parse(event.data);
-      if (json.mRes === 'success' && json.mType === 'payStatus') {
-        if (json.mData.payStatus === 1) {
-          success();
-        } else if (json.mData.payStatus === 2) {
-          fail();
-        }
-      }
-    }
   </script>
 </body>
 
