@@ -22,21 +22,23 @@ function heart_im_connect_server() {
      }, 
     }));
   };
-  socket.onmessage = function (a) {
-    var b = JSON.parse(a.data);
+  socket.onmessage = function (event) {
+    console.log(event)
+    var b = JSON.parse(event.data);
+  
     switch (b.message_type) {
       case "init":
         heart_im_init();
         socket.send(JSON.stringify({ type: "initcomplete", uid: b.id }));
         return;
-      case "chatMessage":
-        b.data.mine = b.sendid == uid ? true : false;
-        b.data.avatar = "uc_server/avatar.php?uid=" + b.sendid + "&size=middle";
-        b.data.fromid = b.sendid;
-        b.data.cid = b.pmid;
-        b.data.timestamp = b.data.timestap * 1000;
-        heart_im_get_message(b.data);
-        socket.send(JSON.stringify({ type: "ackReceive", pmid: b.pmid }));
+      case "chat_message_list":
+        let message_id_list : number[] = [];
+        for (let v of b.data.list) {
+          message_id_list.push(v.cid)
+          layui.layim.getMessage(v);
+          console.log(v)
+        }; 
+        socket.send(JSON.stringify({ message_type: "ack_receive", data: { message_id_list: message_id_list} }));
         return;
       case "logout":
       case "hide":
@@ -50,9 +52,9 @@ function heart_im_connect_server() {
 
 function heart_im_get_message(a) {
   layui.layim.getMessage(a);
-  if (!a.mine) {
-    return layui.jquery("#chatAudio")[0].play();
-  }
+  // if (!a.mine) {
+  //   return layui.jquery("#chatAudio")[0].play();
+  // }
   return;
 }
 
@@ -90,12 +92,12 @@ function heart_im_init() {
 
       heart_im_connect_server()
 
-      //监听添加列表的socket事件，假设你服务端emit的事件名为：addList
-      socket.onmessage = function (res) {
-        if (res.emit === 'addList') {
-          layim.addList(res.data); //如果是在iframe页，如LayIM设定的add面板，则为 parent.layui.layim.addList(data);
-        }
-      };
+      // //监听添加列表的socket事件，假设你服务端emit的事件名为：addList
+      // socket.onmessage = function (res) {
+      //   if (res.emit === 'addList') {
+      //     layim.addList(res.data); //如果是在iframe页，如LayIM设定的add面板，则为 parent.layui.layim.addList(data);
+      //   }
+      // };
       layim.on("sendMessage", function (b) {
         socket.send(JSON.stringify({ type: "chatMessage", data: b }));
       });
