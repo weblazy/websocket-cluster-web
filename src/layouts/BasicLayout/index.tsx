@@ -99,7 +99,15 @@ function heart_im_init() {
       //   }
       // };
       layim.on("sendMessage", function (b) {
-        socket.send(JSON.stringify({ type: "chatMessage", data: b }));
+        socket.send(JSON.stringify({
+           message_type: "chat_message", 
+           data: {
+                 receive_uid: b.to.id,
+                 username: b.mine.username,
+                 avatar: b.mine.avatar,
+                 content: b.mine.content,
+           },
+           }));
       });
       layim.on("online", function (b) {
         socket.send(JSON.stringify({ type: b }));
