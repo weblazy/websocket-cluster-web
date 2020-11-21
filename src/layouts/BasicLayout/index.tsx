@@ -98,21 +98,29 @@ function heart_im_init() {
       //     layim.addList(res.data); //如果是在iframe页，如LayIM设定的add面板，则为 parent.layui.layim.addList(data);
       //   }
       // };
-      layim.on("sendMessage", function (b) {
-        socket.send(JSON.stringify({
-           message_type: "chat_message", 
-           data: {
-                 receive_uid: b.to.id,
-                 username: b.mine.username,
-                 avatar: b.mine.avatar,
-                 content: b.mine.content,
-           },
-           }));
+      layim.on('sendMessage', function (b) {
+       let message = {
+         message_type: 'send_to_user',
+          data: {
+            username: b.mine.username,
+            avatar: b.mine.avatar,
+            content: b.mine.content,
+          },
+        }
+        if (b.to.type == 'group'){
+          message.message_type = 'send_to_group'
+          message.data.group_id = b.to.id
+        }
+        if (b.to.type == 'friend'){
+          message.data.receive_uid = b.to.id
+
+        }
+        socket.send(JSON.stringify(message));
       });
-      layim.on("online", function (b) {
+      layim.on('online', function (b) {
         socket.send(JSON.stringify({ type: b }));
       });
-      layim.on("chatChange", function (b) {
+      layim.on('chatChange', function (b) {
 
       });
       layui.jquery(".heart-im-chat").on("click", function () {
