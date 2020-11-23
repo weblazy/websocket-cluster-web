@@ -39,7 +39,16 @@ function heart_im_connect_server() {
           console.log(v)
         }; 
         socket.send(JSON.stringify({ message_type: "ack_receive", data: { message_id_list: message_id_list} }));
-        return;
+        return
+      case "have_new_message":
+        var storage = window.localStorage
+        let last_user_message_id = storage.last_user_message_id
+        let last_group_message_id = storage.last_group_message_id
+        socket.send(JSON.stringify({ 
+          message_type: "pull_message", data: { 
+          last_user_message_id: last_user_message_id, 
+          last_group_message_id: last_group_message_id,
+         } }));
       case "logout":
       case "hide":
       case "online":
