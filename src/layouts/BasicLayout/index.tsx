@@ -4,7 +4,7 @@ import PageNav from './components/PageNav';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
 import HeaderAvatar from './components/HeaderAvatar';
-import Dexie from 'dexie';
+
 
 
 var storage = window.localStorage
@@ -55,7 +55,6 @@ function gorup_message_list(message) {
   });
 
   db.transaction('rw', db.group, async () => {
-    // Make sure we have something in DB:
     if ((await db.group.where({ id: message.goup_id}).count()) === 0) {
       const id = await db.group.add({ id: message.goup_id, last_id: message.last_id });
       alert(`Addded friend with id ${id}`);
