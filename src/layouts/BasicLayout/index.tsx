@@ -4,13 +4,73 @@ import PageNav from './components/PageNav';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
 import HeaderAvatar from './components/HeaderAvatar';
+import Dexie from 'dexie';
+
 
 var storage = window.localStorage
 
 var socket
 var heart_im_inited = false
 
+function indexdb() {
 
+  var storage = window.localStorage
+  var db = new Dexie("websocket_cluster" + storage.uid);
+  db.version(1).stores({
+    group: "++id,last_id"
+  });
+  db.group.add({ id:3, last_id: 21 }).then(function () {
+    return db.group.where("last_id").below(25).toArray();
+  }).then(function (youngFriends) {
+    alert("My young friends: " + JSON.stringify(youngFriends));
+  }).catch(function (e) {
+    alert("Error: " + (e.stack || e));
+  });
+
+
+  db.transaction('rw', db.friends, async () => {
+    // Make sure we have something in DB:
+    if ((await db.friends.where({ id: 'Josephine' }).count()) === 0) {
+      const id = await db.friends.add({ name: "Josephine", age: 21 });
+      alert(`Addded friend with id ${id}`);
+    }
+
+    // Query:
+    const youngFriends = await db.friends.where("age").below(25).toArray();
+
+    // Show result:
+    alert("My young friends: " + JSON.stringify(youngFriends));
+
+  }).catch(e => {
+    alert(e.stack || e);
+  });
+}
+
+function gorup_message_list(message) {
+
+  var storage = window.localStorage
+  var db = new Dexie("websocket_cluster" + storage.uid);
+  db.version(1).stores({
+    group: "++id,last_id"
+  });
+
+  db.transaction('rw', db.group, async () => {
+    // Make sure we have something in DB:
+    if ((await db.group.where({ id: message.goup_id}).count()) === 0) {
+      const id = await db.group.add({ id: message.goup_id, last_id: message.last_id });
+      alert(`Addded friend with id ${id}`);
+    }
+
+    // // Query:
+    // const youngFriends = await db.friends.where("age").below(25).toArray();
+
+    // // Show result:
+    // alert("My young friends: " + JSON.stringify(youngFriends));
+
+  }).catch(e => {
+    alert(e.stack || e);
+  });
+}
 
 function heart_im_connect_server() {
   socket = new WebSocket('ws://' + '127.0.0.1:9528/p1/client');
@@ -49,6 +109,8 @@ function heart_im_connect_server() {
           last_user_message_id: last_user_message_id, 
           last_group_message_id: last_group_message_id,
          } }));
+      case "gorup_message_list":
+        gorup_message_list(b.data)
       case "logout":
       case "hide":
       case "online":

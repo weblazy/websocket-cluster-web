@@ -68,6 +68,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
     var params = {username:values.name,password:values.password}
     userService.getUser(params).then(function (response) {
       var storage = window.localStorage;
+      storage.uid = response.data.uid;
       storage.username = response.data.username;
       storage.email = response.data.email;
       storage.avatar = response.data.avatar;
