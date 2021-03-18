@@ -99,7 +99,7 @@ export default function RegisterBlock() {
 
         <Form value={postData} onChange={formChange} size="large">
           <Item format="username" required requiredMessage="必填">
-            <Input name="username" size="large" maxLength={20} placeholder="用户名" />
+            <Input name="username" size="large" maxLength={50} placeholder="用户名" />
           </Item>
           <Item required requiredMessage="必填">
             <Input.Password
@@ -118,7 +118,7 @@ export default function RegisterBlock() {
             />
           </Item>
           <Item format="email" required requiredMessage="必填">
-            <Input name="email" size="large" maxLength={20} placeholder="邮箱" />
+            <Input name="email" size="large" maxLength={50} placeholder="邮箱" />
           </Item>
           <Item required requiredMessage="必填">
             <Input
@@ -140,7 +140,7 @@ export default function RegisterBlock() {
                   </Form.Submit>
                 </span>
               }
-              maxLength={20}
+              maxLength={50}
               placeholder="验证码"
             />
           </Item>

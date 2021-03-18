@@ -93,7 +93,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
               <span className={styles.line} />
             </span>
           }
-          maxLength={20}
+          maxLength={50}
           placeholder="手机号"
         />
       </Item>
@@ -116,7 +116,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
               </Form.Submit>
             </span>
           }
-          maxLength={20}
+          maxLength={50}
           placeholder="验证码"
         />
       </Item>
@@ -126,7 +126,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
   const accountForm = (
     <>
       <Item required requiredMessage="必填">
-        <Input name="name" maxLength={20} placeholder="用户名" />
+        <Input name="name" maxLength={50} placeholder="用户名" />
       </Item>
       <Item required requiredMessage="必填" style={{ marginBottom: 0 }}>
         <Input.Password name="password" htmlType="password" placeholder="密码" />
