@@ -59,14 +59,14 @@ HeaderAvatar.defaultProps = {
 };
 
 const logout = () => {
-  window.location.href = 'http://localhost:3333/login.html#/'
+  window.location.href = 'http://' + window.location.hostname+':3333/login.html#/'
 };
 
 
 export default () => {
   var storage = window.localStorage
   if (storage.token == '') {
-    window.location.href = 'http://localhost:3333/login.html#/'
+    window.location.href = 'http://' + window.location.hostname +':3333/login.html#/'
   }
   var prop = { name: storage.username, mail: storage.email, avatar: storage.avatar }
   return HeaderAvatar(prop);

@@ -6,12 +6,12 @@ const routerConfig = [
   {
     path: '/',
     component: BasicLayout,
-    // children: [
-    //   {
-    //     path: '/',
-    //     component: Dashboard,
-    //   }
-    // ],
+    children: [
+      {
+        path: '/',
+        component: Dashboard,
+      }
+    ],
   }
 ];
 export default routerConfig;

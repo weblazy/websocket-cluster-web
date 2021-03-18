@@ -10,7 +10,7 @@
 $ npm install
 
 # 启动服务
-$ npm start  # visit http://localhost:3333
+$ npm start  # visit http://' + window.location.hostname+':3333
 ```
 
 [More docs](https://ice.work/docs/guide/about).

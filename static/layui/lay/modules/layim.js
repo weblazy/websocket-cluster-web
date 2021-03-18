@@ -939,7 +939,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         return layer.msg('内容最长不能超过'+ maxLength +'个字符')
       }
       
-      ul.append(laytpl(elemChatMain).render(data));
+      // ul.append(laytpl(elemChatMain).render(data));
       
       var param = {
         mine: data
@@ -953,7 +953,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,timestamp: new Date().getTime()
         ,mine: true
       };
-      pushChatlog(message);
+      // pushChatlog(message);
       
       layui.each(call.sendMessage, function(index, item){
         item && item(param);
@@ -983,7 +983,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     if(device.ie && device.ie < 9) return;
     var audio = document.createElement("audio");
     audio.src = layui.cache.dir+'css/modules/layim/voice/'+ cache.base.voice;
-    audio.play();
+    // audio.play();
+
   };
   
   //接受消息
@@ -1120,7 +1121,10 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
           nosame = true;
         }
       });
-      if(!(nosame || message.fromid == cache.mine.id)){
+      // if(!(nosame || message.fromid == cache.mine.id)){
+      //   thisChatlog.push(message);
+      // }
+      if (!(nosame)) {
         thisChatlog.push(message);
       }
       if(thisChatlog.length > MAX_ITEM){
@@ -1467,10 +1471,10 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       layer.close(events.find.index);
       return events.find.index = layer.open({
         type: 2
-        ,title: '查找'
+        ,title: '建群'
         ,shade: false
         ,maxmin: true
-        ,area: ['1000px', '520px']
+        ,area: ['600px', '250px']
         ,skin: 'layui-box layui-layer-border'
         ,resize: false
         ,content: cache.base.find
@@ -1768,7 +1772,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         pause();
       } else {
         audioData || (audio.src = othis.data('src'));
-        audio.play();
+        // audio.play();
         othis.attr('status', 'pause');
         othis.data('audio', audio);
         othis.find('i').html('&#xe651;');
@@ -1799,7 +1803,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,area: ['460px', '300px']
         ,maxmin: true
         ,shade: false
-        ,content: '<div style="background-color: #000; height: 100%;"><video style="position: absolute; width: 100%; height: 100%;" src="'+ videoData +'" loop="loop" autoplay="autoplay"></video></div>'
+        , content: '<div style="background-color: #000; height: 100%;"><video style="position: absolute; width: 100%; height: 100%;" src="' + videoData +'" loop="loop" autoplay="autoplay" muted></video></div>'
       });
     }
     

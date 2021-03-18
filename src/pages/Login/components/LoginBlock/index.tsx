@@ -72,8 +72,8 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
       storage.email = response.data.email;
       storage.avatar = response.data.avatar;
       storage.token = response.data.token;
+      storage.uid = response.data.uid;
       Message.success('请求成功');
-      console.log(response);
       location.href = '/dashboard.html#/'　
     }).catch(function (e) {
       console.log(e);
@@ -193,7 +193,7 @@ const LoginBlock: React.FunctionComponent<LoginProps> = (
               其他登录方式 <Icon type="atm" size="small" /> <Icon type="atm" size="small" />{' '}
               <Icon type="atm" size="small" />
             </div>
-            <a href="/" className={styles.link}>
+            <a href="/register.html#/" className={styles.link}>
               注册账号
             </a>
           </div>
